@@ -16,14 +16,13 @@ func SetupRoutes(app *fiber.App, userHandler *handlers.UserHandler, ticketHandle
 	app.Post("/login", userHandler.Login)
 
 	// Protected routes
-	api := app.Group("/api", middleware.JWTAuth(userHandler.jwtService))
+	api := app.Group("/api", middleware.JWTAuth(userHandler.JWTService))
 	api.Get("/profile", userHandler.Profile)
 
 	// Ticket routes
 	tickets := api.Group("/tickets")
 	tickets.Post("/", ticketHandler.CreateTicket)
 	tickets.Post("/:id/assign", ticketHandler.AssignTicket)
-	tickets.Post("/:id/attach", ticketHandler.AttachFile)
 	tickets.Get("/:id", ticketHandler.GetTicket)
 	tickets.Get("/", ticketHandler.GetAllTickets)
 }

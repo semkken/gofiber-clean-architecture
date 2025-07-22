@@ -14,11 +14,15 @@ import (
 type UserHandler struct {
 	cmdHandler   commands.UserCommandHandler
 	queryHandler queries.UserQueryHandler
-	jwtService   *auth.JWTService
+	JWTService   *auth.JWTService
 }
 
 func NewUserHandler(cmdHandler commands.UserCommandHandler, queryHandler queries.UserQueryHandler, jwtService *auth.JWTService) *UserHandler {
-	return &UserHandler{cmdHandler: cmdHandler, queryHandler: queryHandler, jwtService: jwtService}
+	return &UserHandler{
+		cmdHandler:   cmdHandler,
+		queryHandler: queryHandler,
+		JWTService:   jwtService,
+	}
 }
 
 func (h *UserHandler) Register(c *fiber.Ctx) error {

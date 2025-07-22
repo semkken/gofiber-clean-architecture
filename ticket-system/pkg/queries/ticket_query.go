@@ -30,5 +30,5 @@ func (h *ticketQueryHandler) HandleGetTicket(ctx context.Context, query GetTicke
 }
 
 func (h *ticketQueryHandler) HandleGetAllTickets(ctx context.Context, query GetAllTicketsQuery) ([]*entities.Ticket, error) {
-	return h.repo.FindAllTickets(ctx, nil)
+	return h.repo.FindAllTickets(ctx)
 }
